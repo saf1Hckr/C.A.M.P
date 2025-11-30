@@ -1,24 +1,8 @@
 # Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
+.vscode/
+.idea/
 
-node_modules
-dist
-dist-ssr
-*.local
+cleaned_full.csv
 
-# Editor directories and files
-.vscode/*
+splitter.py
 !.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
