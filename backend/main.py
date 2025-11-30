@@ -22,10 +22,15 @@ def allow_iframe(response):
     response.headers["X-Frame-Options"] = "ALLOWALL"
     return response
 
-
-file_location = os.path.join(os.path.dirname(__file__), "sample_df_50k.csv")
-df = pd.read_csv(file_location)
-shapes_gdf = gpd.read_file("nyc_nta_2020.geojson")
+@app.route("/load")
+def load_data():
+    global df, shapes_gdf
+    file_location = os.path.join(os.path.dirname(__file__), "crime_dataset.parquet")
+    df = pd.read_parquet(file_location)
+    geojson_path = os.path.join(os.path.dirname(__file__), "nyc_nta_2020.geojson")
+    shapes_gdf = gpd.read_file(geojson_path)
+    print(f" Loaded {len(df)} rows from Parquet")
+    return " Data loaded"
 
 # Convert df to GeoDataFrame
 df_gdf = gpd.GeoDataFrame(
@@ -142,6 +147,10 @@ for cat, subset in precomputed_categories.items():
 
     choropleth_maps[cat] = m.get_root().render()
 
+@app.route("/ping")
+def ping():
+    return "✓ Backend is alive"
+
 @app.route("/")
 def default_map():
     m = Map(location=(40.7128, -74.0060), zoom_start=10, tiles="CartoDB dark_matter")
@@ -235,36 +244,13 @@ socketio = SocketIO(
     ping_interval=25,
 )
 
-CHUNKS_FOLDER = r"C:\Users\Mohammed Al-Muqsit\Desktop\Repo\ctpFinal\backend\csv_chunks"
-try:
-    # Get a sorted list of all CSV chunk files
-    chunk_files = sorted(
-        [
-            os.path.join(CHUNKS_FOLDER, f)
-            for f in os.listdir(CHUNKS_FOLDER)
-            if f.endswith(".csv")
-        ]
-    )
-
-    # Read all chunks and concatenate
-    df_list = [pd.read_csv(f) for f in chunk_files]
-    df = pd.concat(
-        df_list, ignore_index=True
-    )  # ignore_index=True resets the row numbers
-    print(f"✓ Loaded {len(df)} crime records from {len(df_list)} chunks")
-
-except Exception as e:
-    print(f"✗ ERROR loading CSV chunks: {e}")
-    df = None
-
 # Game state
 games = {}
 
 # Config
-GOOGLE_MAPS_API_KEY = None  # Replace with your API key  # Replace with your API key
+GOOGLE_MAPS_API_KEY = "AIzaSyDOuKyfb-Y2fJEfLOgfR46SVwkUn9NNoCE"  # Replace with your API key  
 MAX_ROUNDS = 3
 
-# Crime type keywords (from your friend's code)
 shooting_keywords = ["SHOT SPOTTER", "SHOTS", "FIREARM"]
 robbery_keywords = ["ROBBERY"]
 burglary_keywords = ["BURGLARY"]
