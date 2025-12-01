@@ -37,8 +37,6 @@ options:
 
 availableSecrets:
   secretManager:
-    - versionName: projects/camp-477922/secrets/gcp-key/versions/latest
-      env: 'GCP_KEY'
     - versionName: projects/camp-477922/secrets/google-maps-api-key/versions/latest
       env: 'GOOGLE_MAPS_API_KEY'
 
