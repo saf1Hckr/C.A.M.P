@@ -4,6 +4,7 @@ flask-cors==6.0.1
 flask-socketio==5.3.6
 folium==0.20.0
 pandas==2.3.3
+gevent==23.9.1
 geopandas
 shapely 
 pyarrow
