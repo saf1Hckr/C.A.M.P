@@ -1,5 +1,29 @@
 @import "tailwindcss";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@theme {
+  --font-inter: 'Inter', sans-serif;
+  --font-outfit: 'Outfit', sans-serif;
+
+  --animate-police: police 2s infinite;
+  --animate-pulseGlow: pulseGlow 2s infinite;
+
+  @keyframes police {
+    0%, 100% { color: red; }
+    50% { color: blue; }
+  }
+  @keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 0 10px #fff; }
+    50% { box-shadow: 0 0 20px #fff; }
+  }
+}
+
+@variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  body {
+    font-family: var(--font-inter);
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-outfit);
+  }
+}

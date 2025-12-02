@@ -608,7 +608,7 @@ const CrimeGeoGuesser = () => {
 
             <div className="h-1/2 bg-black p-4 text-white">
             <h2 className="text-center text-xl font-bold mb-3">
-              Crime Distribution in ZIP {zipCode}
+              Crime Distribution of Unknown Location 
             </h2>
 
             {crimeStats.length > 0 ? (
