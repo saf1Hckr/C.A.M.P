@@ -1,6 +1,16 @@
 # C.A.M.P.
 
-A visual interface for viewing crimes throughout NYC. Learn all about crime statistics and increase your knowledge through our take on the popular game GeoGuessr.
+## Team & Collaboration
+
+C.A.M.P. is a collaborative group project developed by a team of four, combining skills in full-stack development, data analysis, and system design. Each member contributed to different aspects of the application, including backend data processing, real-time functionality, frontend UI/UX, and map-based visualizations.
+
+**Team Members:**
+- Mubashirul Islam  
+- Muhammad Al Muqit  
+- Colvin Koparam  
+- Tanim  
+
+This project emphasizes teamwork, real-world data usage, and interactive learning through visualization and gameplay.
 
 ## Landing Page![LandingPage](https://github.com/user-attachments/assets/48ec9f41-e42a-4651-9d37-a0efc10a365a)
 ## Our Mission![MissionPage](https://github.com/user-attachments/assets/8e7574a3-05d5-44a4-b2bd-aa91cc1d81d0)
